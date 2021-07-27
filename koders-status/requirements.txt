@@ -1,0 +1,12 @@
+subprocess.run==0.0.8
+requests==2.26.0
+datetime==4.3
+asyncio==3.4.3
+uuid==1.30
+discord==1.7.3
+discord.py==1.7.3
+colorama~=0.4.4
+termcolor~=1.1.0
+pandas==1.1.5
+nltk==3.6.2
+matplotlib==3.3.4
