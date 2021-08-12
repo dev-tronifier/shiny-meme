@@ -41,11 +41,14 @@ git_ok=$?
 	exit 2
 
 # -Directory check
-git_branch=`git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n`
+#git_branch=`git branch 2>/dev/null | grep '^*' | colrm 1 2 | tr -d '\n' && echo  -n`
 
-[[ -z "${git_branch}" ]] && \
-	printf "[${BOLD}${FAIL}ERROR${NC}] ${FAIL}Not a github branch!!!\nPlease clone again and don't remove the '.git' file.${NC}${NT}" && \
-	exit 2
+#[[ -z "${git_branch}" ]] && \
+#	printf "[${BOLD}${FAIL}ERROR${NC}] ${FAIL}Not a github branch!!!\nPlease clone again and don't remove the '.git' file.${NC}${NT}" && \
+#	exit 2
 
+git_branch='new_issue'
+
+run_cmd "docker volume create kourage_data"
 run_cmd "docker build -t ${git_branch} ." "Docker file built."
-run_cmd "docker run -v kourage_data:/usr/src/app/db -e TOKEN ${git_branch}" "Run"
+run_cmd "docker run -v kourage_data:/usr/src/app/db -e GUILD_ID -e TOKEN -e REDMINE_KEY ${git_branch}" "Run"
